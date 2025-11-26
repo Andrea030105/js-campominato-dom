@@ -37,8 +37,9 @@ btn_Genera.addEventListener("click", function () {
     function btnGenera(min, max) {
 
         const grid = document.getElementById("grid");
-        bombs(min, max);
-        generateGameGrid(min, max);
+        let bombsArrey = bombs(min, max);
+        console.log(bombsArrey);
+        generateGameGrid(min, max, bombsArrey);
 
         function bombs(min, max) {
             let bombsArrey = [];
@@ -53,21 +54,21 @@ btn_Genera.addEventListener("click", function () {
                     i++
                 }
             }
-            console.log(bombsArrey);
+            return bombsArrey;
         }
-
-        function generateGameGrid(min, max) {
+        function generateGameGrid(min, max, bombsArrey) {
             grid.innerHTML = "";
             for (let i = min; i <= max; i++) {
                 const currentSquare = createSquare(i);
                 grid.appendChild(currentSquare);
                 currentSquare.innerText = i;
                 currentSquare.addEventListener("click", function () {
-                    this.classList.toggle("bg-aqua");
-                    console.log(i)
+                    if (bombsArrey.includes(parseInt(this.innerText))) {
+                        this.classList.add("red-bomb");
+                    }
+                    this.classList.add("bg-aqua");
                 })
             }
-
         }
 
         function createSquare() {
