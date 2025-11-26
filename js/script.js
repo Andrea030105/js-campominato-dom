@@ -13,9 +13,14 @@ BONUS
 
 */
 
+/* INTERCETTO IL CLICK DEL BOTTONE */
+
 const btn_Genera = document.getElementById("btn-genera");
 
 btn_Genera.addEventListener("click", function () {
+
+    /* PREDNO LA DIFFICOLTA' SELEZIONATA */
+
     let diff = document.getElementById("diff").value;
     let min;
     let max;
@@ -34,72 +39,80 @@ btn_Genera.addEventListener("click", function () {
         btnGenera(min, max);
     }
 
-    function btnGenera(min, max) {
+})
 
-        const grid = document.getElementById("grid");
-        let bombsArrey = bombs(min, max);
-        console.log(bombsArrey);
-        generateGameGrid(min, max, bombsArrey);
+/* COLLEGO TUTTO AL BOTTONE GENERATORE */
 
-        function bombs(min, max) {
-            let bombsArrey = [];
+function btnGenera(min, max) {
+    const grid = document.getElementById("grid");
+    let bombsArrey = bombs(min, max);
+    console.log(bombsArrey);
+    generateGameGrid(min, max, bombsArrey);
 
-            let i = 0;
+}
 
-            while (i < 16) {
-                let randomBombs = Math.floor(Math.random() * (max - min + 1) + min);
+/* CREO ARREY CON LE BOMBE */
 
-                if (!bombsArrey.includes(randomBombs)) {
-                    bombsArrey.push(randomBombs);
-                    i++
+function bombs(min, max) {
+    let bombsArrey = [];
+
+    let i = 0;
+
+    while (i < 16) {
+        let randomBombs = Math.floor(Math.random() * (max - min + 1) + min);
+
+        if (!bombsArrey.includes(randomBombs)) {
+            bombsArrey.push(randomBombs);
+            i++
+        }
+    }
+    return bombsArrey;
+}
+
+/* CREA LA GRIGLIA E RICHIAMO I QUADRATI */
+
+function generateGameGrid(min, max, bombsArrey) {
+    grid.innerHTML = "";
+    grid.classList.remove("pointer-none");
+    let pointAqua = 0;
+
+    const pointContainer = document.querySelector(".point-container");
+    let point = document.createElement("h1");
+
+    for (let i = min; i <= max; i++) {
+        const currentSquare = createSquare(i);
+        grid.appendChild(currentSquare);
+        currentSquare.innerText = i;
+        currentSquare.addEventListener("click", function () {
+            if (bombsArrey.includes(parseInt(this.innerText))) {
+                this.classList.add("red-bomb");
+                grid.classList.add("pointer-none");
+                point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
+                pointContainer.appendChild(point);
+
+            } else {
+                pointAqua++;
+                this.classList.add("bg-aqua");
+                this.classList.add("pointer-none");
+                console.log(pointAqua);
+                if (pointAqua == (max - 16)) {
+                    point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
+                    pointContainer.appendChild(point);
                 }
             }
-            return bombsArrey;
-        }
-        function generateGameGrid(min, max, bombsArrey) {
-            grid.innerHTML = "";
-            grid.classList.remove("pointer-none");
-            let pointAqua = 0;
-
-            const pointContainer = document.querySelector(".point-container");
-            let point = document.createElement("h1");
-
-            for (let i = min; i <= max; i++) {
-                const currentSquare = createSquare(i);
-                grid.appendChild(currentSquare);
-                currentSquare.innerText = i;
-                currentSquare.addEventListener("click", function () {
-                    if (bombsArrey.includes(parseInt(this.innerText))) {
-                        this.classList.add("red-bomb");
-                        grid.classList.add("pointer-none");
-                        point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
-                        pointContainer.appendChild(point);
-
-                    } else {
-                        pointAqua++;
-                        this.classList.add("bg-aqua");
-                        this.classList.add("pointer-none");
-                        console.log(pointAqua);
-                        if (pointAqua == (max - 16)) {
-                            point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
-                            pointContainer.appendChild(point);
-                        }
-                    }
-                })
-            }
-        }
-
-        function createSquare() {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            if (diff == 3) {
-                square.classList.add("square-3");
-            } else if (diff == 2) {
-                square.classList.add("square-2");
-            }
-            return square;
-        }
-
+        })
     }
+}
 
-})
+/* CREO I QUADRATI IN BASE ALLA DIFFICOLTA' */
+
+function createSquare() {
+    const square = document.createElement("div");
+    square.classList.add("square");
+    if (diff == 3) {
+        square.classList.add("square-3");
+    } else if (diff == 2) {
+        square.classList.add("square-2");
+    }
+    return square;
+}
