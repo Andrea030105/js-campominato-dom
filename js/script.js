@@ -1,17 +1,16 @@
 /* 
-L'utente clicca su un bottone che genererà una griglia di gioco quadrata;
-Ogni cella ha un numero progressivo, da 1 a 10;
-Ci saranno quindi 10 caselle per ognuna delle 10 righe;
-Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
+Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta;
+Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell'arrey delle bombe non potranno esserci due numeri ugalai.
+
+In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati "abiamo calpestato una bomaba" la cella si colora di rosso e la partita termina.
+
+La partita termina qunado il giocatore clicca su una bomba o quando raggiunge il numero massimo di caselle azzurre.
+
+Il software comunica il punteggio, cioè il numero di volte che l'utente ha cliccato su una cella azzurra.
 
 BONUS
 
-Aggiungere una select accanto al bottone di genrazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
-- con difficoltà 1=> 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
 
-- con difficoltà 2=> 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
-
-- con difficoltà 3=> 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
 */
 
 const btn_Genera = document.getElementById("btn-genera");
