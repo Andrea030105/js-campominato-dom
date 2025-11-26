@@ -35,9 +35,26 @@ btn_Genera.addEventListener("click", function () {
     }
 
     function btnGenera(min, max) {
+
         const grid = document.getElementById("grid");
+        bombs(min, max);
         generateGameGrid(min, max);
 
+        function bombs(min, max) {
+            let bombsArrey = [];
+
+            let i = 0;
+
+            while (i < 16) {
+                let randomBombs = Math.floor(Math.random() * (max - min + 1) + min);
+
+                if (!bombsArrey.includes(randomBombs)) {
+                    bombsArrey.push(randomBombs);
+                    i++
+                }
+            }
+            console.log(bombsArrey);
+        }
 
         function generateGameGrid(min, max) {
             grid.innerHTML = "";
