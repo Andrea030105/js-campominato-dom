@@ -60,6 +60,10 @@ btn_Genera.addEventListener("click", function () {
             grid.innerHTML = "";
             grid.classList.remove("pointer-none");
             let pointAqua = 0;
+
+            const pointContainer = document.querySelector(".point-container");
+            let point = document.createElement("h1");
+
             for (let i = min; i <= max; i++) {
                 const currentSquare = createSquare(i);
                 grid.appendChild(currentSquare);
@@ -68,14 +72,17 @@ btn_Genera.addEventListener("click", function () {
                     if (bombsArrey.includes(parseInt(this.innerText))) {
                         this.classList.add("red-bomb");
                         grid.classList.add("pointer-none");
-                        alert("HAI TOTALIZZATO " + pointAqua + " PUNTI!!!");
+                        point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
+                        pointContainer.appendChild(point);
+
                     } else {
                         pointAqua++;
                         this.classList.add("bg-aqua");
                         this.classList.add("pointer-none");
                         console.log(pointAqua);
                         if (pointAqua == (max - 16)) {
-                            alert("HAI VINTO")
+                            point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
+                            pointContainer.appendChild(point);
                         }
                     }
                 })

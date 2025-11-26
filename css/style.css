@@ -53,7 +53,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
 
 .btn {
@@ -63,6 +63,14 @@ body {
     padding: 15px;
     font-weight: bold;
     margin: 2rem;
+}
+
+#diff {
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-weight: bold;
 }
 
 .btn:hover {
@@ -76,4 +84,23 @@ body {
 
 .pointer-none {
     pointer-events: none;
+}
+
+.point-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.point-container h1 {
+    color: red;
+    font-size: 3rem;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
 }
