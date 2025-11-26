@@ -73,3 +73,7 @@ body {
 .red-bomb {
     background-color: red;
 }
+
+.pointer-none {
+    pointer-events: none;
+}

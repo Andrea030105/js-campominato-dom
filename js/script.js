@@ -58,6 +58,8 @@ btn_Genera.addEventListener("click", function () {
         }
         function generateGameGrid(min, max, bombsArrey) {
             grid.innerHTML = "";
+            grid.classList.remove("pointer-none");
+            let pointAqua = 0;
             for (let i = min; i <= max; i++) {
                 const currentSquare = createSquare(i);
                 grid.appendChild(currentSquare);
@@ -65,8 +67,17 @@ btn_Genera.addEventListener("click", function () {
                 currentSquare.addEventListener("click", function () {
                     if (bombsArrey.includes(parseInt(this.innerText))) {
                         this.classList.add("red-bomb");
+                        grid.classList.add("pointer-none");
+                        alert("HAI TOTALIZZATO " + pointAqua + " PUNTI!!!");
+                    } else {
+                        pointAqua++;
+                        this.classList.add("bg-aqua");
+                        this.classList.add("pointer-none");
+                        console.log(pointAqua);
+                        if (pointAqua == (max - 16)) {
+                            alert("HAI VINTO")
+                        }
                     }
-                    this.classList.add("bg-aqua");
                 })
             }
         }
