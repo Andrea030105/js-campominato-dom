@@ -21,8 +21,6 @@ body {
 }
 
 .square {
-    width: calc(100% / 10);
-    height: calc(700px / 10);
     border: 1px solid black;
     display: flex;
     align-items: center;
@@ -31,16 +29,19 @@ body {
     font-size: 2rem;
 }
 
+.square-1 {
+    width: calc(100% / 10);
+    height: calc(700px / 10);
+}
+
 .square-2 {
     width: calc(100% /9);
     height: calc(700px /9);
-    border: 1px solid black;
 }
 
 .square-3 {
     width: calc(100% / 7);
     height: calc(700px / 7);
-    border: 1px solid black;
 }
 
 .bg-aqua {
