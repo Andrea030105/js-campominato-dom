@@ -69,6 +69,19 @@ function bombs(min, max) {
     return bombsArrey;
 }
 
+/* MOSTRO TUTTE LE BOMBE */
+
+function showAllBombs(bombsArrey) {
+    const cells = document.getElementsByClassName("square");
+
+    for (let i = 0; i < cells.length; i++) {
+        let cell = cells[i];
+        if (bombsArrey.includes(parseInt(cell.innerText))) {
+            cell.classList.add("red-bomb")
+        }
+    }
+}
+
 /* CREA LA GRIGLIA E RICHIAMO I QUADRATI */
 
 function generateGameGrid(min, max, bombsArrey) {
@@ -87,6 +100,7 @@ function generateGameGrid(min, max, bombsArrey) {
             if (bombsArrey.includes(parseInt(this.innerText))) {
                 this.classList.add("red-bomb");
                 grid.classList.add("pointer-none");
+                showAllBombs(bombsArrey);
                 point.innerHTML = `Il tuo punteggio è ${pointAqua}`;
                 pointContainer.appendChild(point);
 
